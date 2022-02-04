@@ -19,8 +19,15 @@ class LojaGeral(View):
     def setup(self, *args, **kwargs):
         super().setup(*args, **kwargs)
 
+        produto_queryset = models.Produto.objects.all()
+        produto_resposta = []
+
+        for produto in produto_queryset:
+            product_dict = {'produto': produto, 'produto_foto': models.ProdutoFoto.objects.filter(produto=produto).first()}
+            produto_resposta.append(product_dict)
+
         contexto = {
-            'produtos': models.Produto.objects.all(),
+            'produtos': produto_resposta
         }
 
         self.renderizar = render(self.request, self.template_name, contexto)
@@ -34,8 +41,13 @@ class LojaItem(View):
     template_name = 'loja/loja_item.html'
 
     def get(self, *args, **kwargs):
+        produto_obj = get_object_or_404(models.Produto, pk=self.kwargs.get('pk'))
+        produto_foto = models.ProdutoFoto.objects.filter(produto=produto_obj)
+        foto_principal = produto_foto.first()
         context = {
-            'produto': get_object_or_404(models.Produto, pk=self.kwargs.get('pk'))
+            'produto': produto_obj,
+            'produto_foto':  produto_foto,
+            'foto_principal': foto_principal
         }
         return render(self.request, self.template_name, context)
 
