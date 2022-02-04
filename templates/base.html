@@ -1,0 +1,211 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    {% include 'parcial/_head.html' %}
+	<title>AMA Canoinhas</title>
+</head>
+
+<body id="bg" style="">
+
+	<header>
+		<div class="header-top-bar fixed-top">
+			<div class="container">
+			{% include 'parcial/_nav.html' %}
+			</div>
+		</div>
+	</header>
+
+	<main>
+		{% include 'parcial/_messages.html' %}
+		{% block conteudo %}
+		{% endblock conteudo %}
+
+		<div class="wc_whatsapp_app left">
+			<a href="https://chat.whatsapp.com/IOiIg0en1u2ILUYclMvaBi" target="_blank" class="wc_whatsapp">
+				<span class="wc_whatsapp_primary">
+					<span class="close">x</span>
+					<img src="https://api.whatsapp.com/send?phone=5547999374246">
+					<p>Olá, gostaria de mais informações.</p>
+				</span>
+			</a>
+			<a href="https://chat.whatsapp.com/IOiIg0en1u2ILUYclMvaBi" target="_blank" class="wc_whatsapp_secondary" style="display: inline;">
+				<p>
+					"Olá, gostaria de mais informações."
+				</p>
+			</a>
+		</div>
+
+	</main>
+
+	<!-- footer Start -->
+	<footer class="footer section-top mt-5 gray-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 mr-auto col-sm-6">
+					<div class="widget mb-5 mb-lg-0">
+						<div class="logo mb-4">
+							<img id="logo-image" src="{% static 'images/ama-icon.png' %}" alt="" class="img-fluid">
+						</div>
+						<p class="text-center">Associação de Pais e Amigos dos Autistas.</p>
+						<ul class="list-inline footer-socials mt-4 text-center">
+							<li class="list-inline-item">
+								<a target="_blank" href="https://www.facebook.com/amacanoinhas">
+									<i class="icofont-facebook"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a target="_blank" href="https://www.instagram.com/amacanoinhas">
+									<i class="icofont-instagram"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-7 col-md-6 col-sm-6">
+					<div class="widget widget-contact mb-5 mb-lg-0">
+						<h4 class="text-capitalize mb-3">Contato</h4>
+						<div class="divider mb-4"></div>
+
+						<div class="footer-contact-block mb-4">
+							<div class="icon d-flex align-items-center">
+								<i class="icofont-ui-email mr-3"></i>
+								<span class="h6 mb-0">E-mail</span>
+							</div>
+							<h4 class="mt-2">amacanoinhas@gmail.com</h4>
+						</div>
+
+						<div class="footer-contact-block">
+							<div class="icon d-flex align-items-center">
+								<i class="icofont-support mr-3"></i>
+								<span class="h6 mb-0">Telefone</span>
+							</div>
+							<h4 class="mt-2">(47) 98424-3025</h4>
+						</div>
+
+						<div class="footer-contact-block">
+							<div class="icon d-flex align-items-center">
+								<i class="icofont-location-pin mr-3"></i>
+								<span class="h6 mb-0">Endereço</span>
+							</div>
+							<h4 class="mt-2">Rua Alberto Tokarski, Nº 11, Tricolin</h4>
+							<h4 class="mt-2">89460-000 - Canoinhas-SC</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-btm py-4 mt-5">
+				<div class="row align-items-center justify-content-between">
+					<div class="col-lg-auto">
+						<div class="copyright">
+							&copy; Direitos reservados para a 
+							<span class="text-color">Associação de Pais e Amigos dos Autistas de Canoinhas-SC</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-4">
+						<a class="backtop js-scroll-trigger" href="#top">
+							<i class="icofont-long-arrow-up"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- 
+    Essential Scripts
+    =====================================-->
+
+
+	<!-- Main jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" integrity="sha512-Meww2sXqNHxI1+5Dyh/9KAtvI9RZSA4c1K2k5iL02oiPO/RH3Q30L3M1albtqMg50u4gRTYdV4EXOQqXEI336A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- Bootstrap 4.3.2 -->
+	<script src="{% static 'plugins/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'plugins/counterup/jquery.easing.js' %}"></script>
+	<!-- Slick Slider -->
+	<script src="{% static 'plugins/slick-carousel/slick/slick.min.js' %}"></script>
+	<!-- Counterup -->
+	<script src="{% static 'plugins/counterup/jquery.waypoints.min.js' %}"></script>
+
+	<script src="{% static 'plugins/shuffle/shuffle.min.js' %}"></script>
+	<script src="{% static 'plugins/counterup/jquery.counterup.min.js' %}"></script>
+	<!-- Google Map -->
+	<script src="{% static 'plugins/google-map/map.js' %}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+
+	<!-- Datepicker -->
+	<script src="{% static 'datepicker/js/bootstrap-datepicker.js' %}"></script>
+	<script src="{% static 'datepicker/js/locales/bootstrap-datepicker.pt-BR.js' %}"></script>
+	<script>
+		$('.datepicker').datepicker({
+			format: 'dd/mm/yyyy',
+			language: 'pt-BR',
+			todayHighlight: true,
+		});
+	</script>
+
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript">
+	/*
+	Created on : 24/02/2019, 13:27:07
+	Author : ebrahimpleite
+	*/
+	$(document).ready(function () {
+	var cookieMessagePrimary = $.cookie("wc_whatsapp_primary");
+	if (cookieMessagePrimary !== '1') {
+	$.cookie("wc_whatsapp_primary", 1, {expires: 30}); //Mensagem Principal volta exibir após de 30 dias
+	setTimeout(showMessagePrimary, 4000);
+	} else {
+	//se tiver no mobile, a mensagem primária não exibe
+	if (screen.width > 550) {
+	setTimeout(showMessageSecondary, 4000);
+	}
+	}
+	//esconde mensagem secundária ao clicar
+	$('.wc_whatsapp_secondary').click(function () {
+	$(this).fadeOut(400);
+	});
+	//esconde mensagem primária ao clicar
+	$('.wc_whatsapp_primary').click(function () {
+	$(this).fadeOut(400);
+	});
+	//controla botão de fechar da mensagem primária
+	$('.wc_whatsapp_primary .close').click(function () {
+	$('.wc_whatsapp_primary').fadeOut(400);
+	return false;
+	});
+	//esconde mensagem secundária ao passar o mouse no botão
+	$('.wc_whatsapp').hover(function () {
+	$('.wc_whatsapp_secondary').fadeOut(400);
+	});
+	//função para exibir mensagem secundária
+	function showMessageSecondary() {
+	$('.wc_whatsapp_secondary').fadeIn(400);
+	}
+
+	//função para exibir mensagem primária
+	function showMessagePrimary() {
+	$('.wc_whatsapp_primary').fadeIn(400).css("display", "flex");
+	}
+	});
+	</script>
+
+	{% block scripts %}{% endblock scripts %}
+
+	<script src="{% static 'js/script.js' %}"></script>
+	<script src="{% static 'js/contact.js' %}"></script>
+
+	<script src="https://cdn2.woxo.tech/a.js#61bcda2bbbe9820016f4f290" async data-usrc></script>
+</body>
+
+</html>

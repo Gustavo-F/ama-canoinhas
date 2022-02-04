@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+<section class="section-top">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="card shadow-lg">
+                <div class="card-content">
+                    <div class="card-header col-lg-12 text-center section-title">
+                        <h2>Loja</h2>
+                        <div class="divider mx-auto my-4"></div>
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for produto in produtos %}
+                        <div class="col-md-4 mb-4 mt-4">
+                            <a href="{% url 'loja:loja_item' produto.produto.pk %}">
+                                <div class="product-card card shadow-lg">
+                                    <div class="card-header d-flex">
+                                        <div class="discount-tag-card rounded"><span class="discount-tag-value">25%</span><span>Off</span>
+                                        </div>
+                                        <div class="remaining-tag-card border border-primary rounded">
+                                            <span>Restam</span><span class="remaining-tag-value">{{ produto.produto.quantidade }}</span><span>Unid.</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body rounded">
+                                        <div class="product-image">
+                                            <img src="{{ produto.produto_foto.foto.url }}">
+                                        </div>
+                                        <div class="product-title">
+                                            <h3 class="card-title mt-3"> {{ produto.produto.nome }}</h3>
+                                        </div>
+                                        <div class="product-prices">
+                                            <p class="product-previous-value">R$ {{ produto.produto.preco }}</p>
+                                            <p class="product-current-value">R$ {{ produto.produto.preco_promocional }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock conteudo %}

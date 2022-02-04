@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <section class="section-top">
+        <div class="container">
+            <div class="card shadow-lg">
+                <div class="card-content">
+                    <div class="card-header">
+                        <nav class="nav nav-tabs">
+                            <a class="nav-item nav-link" href="{% url 'ama:dashboard' %}">Mensagens</a>
+                            <a class="nav-item nav-link" href="{% url 'ama:dashboard_noticias' %}">Notícias</a>
+                            <a class="nav-item nav-link" href="{% url 'ama:dashboard_projetos' %}">Projetos</a>
+                            <a class="nav-item nav-link" href="{% url 'ama:dashboard_eventos' %}">Eventos</a>
+                            <a class="nav-item nav-link" href="{% url 'ama:dashboard_indicacoes' %}">Indicações</a>
+                            <a class="nav-item nav-link" href="{% url 'ama:parceiros' %}">Parceiros</a>
+                            <a class="nav-item nav-link" href="{% url 'loja:dashboard_categorias' %}">Gerenciar Categorias</a>
+                            <a class="nav-item nav-link" href="{% url 'loja:dashboard_produtos' %}">Gerenciar Produtos</a>
+                        </nav>
+                    </div>
+                    <div class="card-body">
+                        {% block dashboard_content %}
+                        
+                        {% endblock dashboard_content %}
+                        <div class="row col-lg-auto mt-3">
+                            {% include 'parcial/_pagination.html' %}
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock conteudo %}
+
+{% block scripts %}
+    {% block dashboard_scripts %}
+        
+    {% endblock dashboard_scripts %}
+{% endblock scripts %}
