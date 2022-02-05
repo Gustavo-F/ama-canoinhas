@@ -35,13 +35,14 @@
                             </div>
 
                             <div class="row ml-auto">
+                                <a href="{% url 'loja:editar_categoria' categoria.pk %}">
                                 <div class="col-lg-1">
                                     <button class="btn-sm" data-toggle="tooltip"
-                                    data-placement="top" title="Editar"><a href="{% url 'loja:editar_categoria' categoria.pk %}">
+                                    data-placement="top" title="Editar">
                                     <i class="icofont-edit icofont-2x" style="color: blue;"></i>    
-                                    </a>
                                     </button>
                                 </div>
+                                </a>
 
                                 <div class="col-lg-1">
                                     <button onclick="excluir_categoria({{ categoria.pk }})" class="btn-sm" data-toggle="tooltip"
