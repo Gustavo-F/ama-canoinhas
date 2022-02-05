@@ -11,10 +11,16 @@
             <div class="card shadow-lg">
                 <div class="card-content">
                     <div class="card-header text-center">
-                        <h2 class="title-color">Adicionar Produto</h2>
+                        <h2 class="title-color">
+                            {% if titulo %}
+                                {{ titulo }}
+                            {% else %}
+                                Adicionar Produto
+                            {% endif %}
+                        </h2>
                     </div>
                     <div class="card-body">
-                        {% crispy addproduto_form %}
+                        {% crispy produto_form %}
                     </div>
                 </div>
             </div>

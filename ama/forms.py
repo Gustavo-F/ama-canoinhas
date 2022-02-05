@@ -75,7 +75,7 @@ class NoticiaForm(forms.ModelForm):
     )
 
     capa = forms.ImageField(
-        label='Capa:',
+        label='Capa: ',
         required=True
     )
 

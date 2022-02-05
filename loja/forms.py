@@ -35,9 +35,15 @@ class ProdutoForm(forms.ModelForm):
         widget=SummernoteWidget(),
     )
 
+    fotos = forms.ImageField(
+        required=True,
+        label='Fotos: ',
+        widget=forms.FileInput(attrs={'multiple': True})
+    )
+
     class Meta:
         model = models.Produto
-        fields = ['nome', 'categoria', 'quantidade', 'preco', 'preco_promocional', 'descricao', ]
+        fields = ['nome', 'categoria', 'quantidade', 'preco', 'preco_promocional', 'descricao', 'fotos']
 
     def __init__(self, *args, **kwargs):
         super(ProdutoForm, self).__init__(*args, **kwargs)
@@ -55,6 +61,7 @@ class ProdutoForm(forms.ModelForm):
                 Column('preco', css_class='col-lg-4'),
                 Column('preco_promocional', css_class='col-lg-4'),
             ),
+            Row(Column('fotos', css_class='col-lg-8')),
             Row(
                 Column('descricao', css_class='col-lg-12'),
             ),

@@ -19,15 +19,8 @@ class LojaGeral(View):
     def setup(self, *args, **kwargs):
         super().setup(*args, **kwargs)
 
-        produto_queryset = models.Produto.objects.all()
-        produto_resposta = []
-
-        for produto in produto_queryset:
-            product_dict = {'produto': produto, 'produto_foto': models.ProdutoFoto.objects.filter(produto=produto).first()}
-            produto_resposta.append(product_dict)
-
         contexto = {
-            'produtos': produto_resposta
+            'produtos': models.Produto.objects.all()
         }
 
         self.renderizar = render(self.request, self.template_name, contexto)
@@ -160,10 +153,13 @@ class AdicionarProduto(LoginRequiredMixin, View):
         super().setup(*args, **kwargs)
 
         contexto = {
-            'addproduto_form': forms.ProdutoForm(self.request.POST or None, self.request.FILES or None)
+            'produto_form': forms.ProdutoForm(
+                self.request.POST or None,
+                self.request.FILES or None
+            )
         }
 
-        self.addproduto_form = contexto['addproduto_form']
+        self.produto_form = contexto['produto_form']
 
         self.renderizar = render(self.request, self.template_name, contexto)
 
@@ -171,11 +167,20 @@ class AdicionarProduto(LoginRequiredMixin, View):
         return self.renderizar
 
     def post(self, *args, **kwargs):
-        if not self.addproduto_form.is_valid():
+        if not self.produto_form.is_valid():
             return self.renderizar
 
-        self.addproduto_form.save()
+        produto = self.produto_form.save(commit=False)
+        produto.save()
+        
+        fotos = self.request.FILES.getlist('fotos')
+        for foto in fotos:
+            produto_foto = models.ProdutoFoto(foto=foto)
+            produto_foto.save()
 
+            produto.fotos.add(produto_foto)
+
+        produto.save()
         messages.success(
             self.request,
             'Produto adicionado com sucesso!', 
@@ -192,13 +197,15 @@ class EditarProduto(LoginRequiredMixin, View):
 
         self.produto = get_object_or_404(models.Produto, pk=self.kwargs.get('pk'))
         contexto = {
-            'addproduto_form': forms.ProdutoForm(
+            'titulo': 'Editar Produto',
+            'produto_form': forms.ProdutoForm(
                 self.request.POST or None,
+                self.request.FILES or None,
                 instance=self.produto,
             ),
         }
 
-        self.addproduto_form = contexto['addproduto_form']
+        self.produto_form = contexto['produto_form']
 
         self.renderizar = render(self.request, self.template_name, contexto)
 
@@ -206,17 +213,15 @@ class EditarProduto(LoginRequiredMixin, View):
         return self.renderizar
 
     def post(self, *args, **kwargs):
-        if not self.addproduto_form.is_valid():
+        if not self.produto_form.is_valid():
             return self.renderizar
 
-        self.produto.nome = self.addproduto_form['nome'].value()
-        self.produto.Categoria = self.addproduto_form['categoria'].value()
-        self.produto.quantidade = self.addproduto_form['quantidade'].value()
-        self.produto.preco = self.addproduto_form['preco'].value()
-        self.produto.preco_promocional = self.addproduto_form['preco_promocional'].value()
-        self.produto.descricao = self.addproduto_form['descricao'].value()
-        self.produto.save()
+        self.produto_form.save()
 
+        messages.success(
+            self.request,
+            'Produto editado com sucesso!',
+        )
         return redirect('loja:dashboard_produtos')
 
 

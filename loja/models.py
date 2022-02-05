@@ -1,6 +1,4 @@
 from django.db import models
-from django.core.validators import MinLengthValidator
-
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=255)
@@ -10,6 +8,17 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class ProdutoFoto(models.Model):
+    foto = models.ImageField(upload_to='produto/')
+
+    class Meta:
+        verbose_name = 'Produto Foto'
+        verbose_name_plural = 'Produtos Fotos'
+
+    def __str__(self):
+        return self.foto.url
 
 
 class Produto(models.Model):
@@ -27,11 +36,8 @@ class Produto(models.Model):
         null=True
     )
     descricao = models.TextField()
+    fotos = models.ManyToManyField(ProdutoFoto, verbose_name='Fotos')
 
     def __str__(self):
         return self.nome
-
-class ProdutoFoto(models.Model):
-    foto = models.ImageField(upload_to='produto/')
-    produto = models.ForeignKey(Produto, on_delete=models.DO_NOTHING)
     
