@@ -3,55 +3,56 @@
 {% load static %}
 
 {% block conteudo %}
-<section class="section-top">
-    <div class="container">
-        <div class="col-lg-12">
-            <div class="card shadow-lg">
-                <div class="card-content">
-                    <div class="product-detail">
-                        <div class="row">
-                            <div class="offset-md-1 col-md-5">
-                                <div class="product-detail-image mainImgContainer">
-                                    <img id="mainProductImage" class="content" src="{{ foto_principal.foto.url }}" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="product-detail-card">
-                                    <div class="product-detail-title text-left mt-5">
-                                        <h2 class="title-color">{{produto.nome}}</h2>
-                                        <div class="divider mt-3"></div>
+    <section class="section-top">
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="card shadow-lg">
+                    <div class="card-content">
+                        <div class="product-detail">
+                            <div class="row mt-4">
+                                <div class="offset-md-1 col-md-5">
+                                    <div class="product-detail-image mainImgContainer">
+                                        <img id="mainProductImage" class="content" src="{{ foto_principal.foto.url }}" />
                                     </div>
                                 </div>
-                                <div class="product-detail-prices text-left mt-3">
-                                    <p class="product-previous-value ">R$ {{produto.preco}}</p>
-                                    <p class="product-current-value ">R$ {{produto.preco_promocional}}</p>
-                                    <div class="divider mt-4"></div>
-                                </div>
-                                <div class="product-detail-alt-images mt-3">
-                                    <ul class="product-detail-list-images">
-                                        {% for foto in produto_foto %}
-                                            <li onclick="changeMainImage(this)" class="product-detail-list-item"><img
-                                                src="{{foto.foto.url}}"></li>
-                                        {% endfor %}
-                                    </ul>
-                                    <div class="divider mt-3"></div>
-                                </div>
-                                <div class="product-detail-contact mt-3">
-                                    <a href="https://chat.whatsapp.com/IOiIg0en1u2ILUYclMvaBi">
-                                        <button class="contact-button rounded">
-                                            <img src="https://logodownload.org/wp-content/uploads/2015/04/whatsapp-logo-1.png"
-                                            class="contact-icon rounded" />Entre em contato</button>
-                                    </a>
+                                <div class="col">
+                                    <div class="product-detail-card">
+                                        <div class="product-detail-title text-left mt-5">
+                                            <h2 class="title-color">{{produto.nome}}</h2>
+                                            <div class="divider mt-3"></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-detail-prices text-left mt-3">
+                                        <p class="product-previous-value ">R$ {{produto.preco}}</p>
+                                        <p class="product-current-value ">R$ {{produto.preco_promocional}}</p>
+                                        <div class="divider mt-4"></div>
+                                    </div>
+                                    <div class="product-detail-alt-images mt-3">
+                                        <ul class="product-detail-list-images">
+                                            {% for foto in produto_foto %}
+                                                <li onclick="changeMainImage(this)" class="product-detail-list-item"><img
+                                                    src="{{foto.foto.url}}"></li>
+                                            {% endfor %}
+                                        </ul>
+                                        <div class="divider mt-3"></div>
+                                    </div>
+                                    <div class="product-detail-contact mt-3">
+                                        <a href="https://chat.whatsapp.com/IOiIg0en1u2ILUYclMvaBi">
+                                            <button class="contact-button rounded">
+                                                <img src="https://logodownload.org/wp-content/uploads/2015/04/whatsapp-logo-1.png"
+                                                class="contact-icon rounded" />Entre em contato</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="offset-md-1 col-md-5">
-                                <div class="product-detail-info">
-                                    <h2 class="title-color">Detalhes</h2>
-                                    <div class="divider mt-3"></div>
-                                    <div class="product-detail-content">
-                                        <p>{{produto.descricao | safe}}</p>
+                            <div class="row mt-3 mb-4">
+                                <div class="offset-md-1 col-md-10">
+                                    <div class="product-detail-info">
+                                        <h2 class="title-color">Detalhes</h2>
+                                        <div class="divider mt-3"></div>
+                                        <div class="product-detail-content">
+                                            <p>{{produto.descricao | safe}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +61,9 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-                        <script src="{% static 'js/store_item.js'%}"></script>
-                        {% endblock conteudo %}
+    </section>
+{% endblock conteudo %}
+
+{% block scripts %}
+    <script src="{% static 'js/store_item.js'%}"></script>
+{% endblock scripts %}
