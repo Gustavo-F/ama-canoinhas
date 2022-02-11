@@ -40,4 +40,8 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def get_discount_percentage(self):
+        result = 100 - (self.preco_promocional * 100 / self.preco)
+        return round(result, 1)
     
