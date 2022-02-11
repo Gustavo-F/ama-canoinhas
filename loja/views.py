@@ -216,11 +216,20 @@ class EditarProduto(LoginRequiredMixin, View):
         if not self.produto_form.is_valid():
             return self.renderizar
 
-        self.produto_form.save()
+        produto = self.produto_form.save(commit=False)
+        produto.save()
+        
+        fotos = self.request.FILES.getlist('fotos')
+        for foto in fotos:
+            produto_foto = models.ProdutoFoto(foto=foto)
+            produto_foto.save()
 
+            produto.fotos.add(produto_foto)
+
+        produto.save()
         messages.success(
             self.request,
-            'Produto editado com sucesso!',
+            'Produto adicionado com sucesso!', 
         )
         return redirect('loja:dashboard_produtos')
 
