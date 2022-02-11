@@ -28,7 +28,6 @@ class ProdutoForm(forms.ModelForm):
         decimal_places=2, 
         max_digits=5, 
         label='Preço Promocional:',
-        required=False,
     )
 
     descricao = forms.CharField(
