@@ -24,6 +24,7 @@ class ProdutoForm(forms.ModelForm):
         label='Preço',
     )
     preco_promocional = forms.DecimalField(
+        required=False,
         decimal_places=2, 
         max_digits=5, 
         label='Preço Promocional:',

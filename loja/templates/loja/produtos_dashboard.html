@@ -37,7 +37,14 @@
                                 <div style="border-bottom:1px solid darkgrey;"></div>
                                 <p class="mb-0 mt-4">Quantidade: {{ produto.quantidade }}</p>
                                 <p class="mb-0">Preço: {{ produto.preco }}</p>
-                                <p class="mb-0">Promoção: {{ produto.preco_promocional }}</p>
+                                <p class="mb-0">
+                                    Promoção:
+                                    {% if produto.preco_promocional %}
+                                        {{ produto.preco_promocional }}
+                                    {% else %}
+                                        Não Informado
+                                    {% endif %} 
+                                </p>
                             </a>
                         </div>
                         <div class="card-footer">

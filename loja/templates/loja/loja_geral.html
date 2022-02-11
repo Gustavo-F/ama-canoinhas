@@ -34,8 +34,12 @@
                                                 <h3 class="card-title mt-3"> {{ produto.nome }}</h3>
                                             </div>
                                             <div class="product-prices">
-                                                <p class="product-previous-value">R$ {{ produto.preco }}</p>
-                                                <p class="product-current-value">R$ {{ produto.preco_promocional }}</p>
+                                                {% if produto.preco_promocional %}
+                                                    <p class="product-previous-value">R$ {{ produto.preco }}</p>
+                                                    <p class="product-current-value">R$ {{ produto.preco_promocional }}</p>
+                                                {% else %}
+                                                    <p class="product-current-value">R$ {{ produto.preco }}</p>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>

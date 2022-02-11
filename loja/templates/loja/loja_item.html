@@ -23,8 +23,12 @@
                                         </div>
                                     </div>
                                     <div class="product-detail-prices text-left mt-3">
-                                        <p class="product-previous-value ">R$ {{produto.preco}}</p>
-                                        <p class="product-current-value ">R$ {{produto.preco_promocional}}</p>
+                                        {% if produto.preco_promocional %}
+                                            <p class="product-previous-value ">R$ {{produto.preco}}</p>
+                                            <p class="product-current-value ">R$ {{produto.preco_promocional}}</p>
+                                        {% else %}
+                                            <p class="product-current-value ">R$ {{produto.preco}}</p>
+                                        {% endif %}
                                         <div class="divider mt-4"></div>
                                     </div>
                                     <div class="product-detail-alt-images mt-3">
