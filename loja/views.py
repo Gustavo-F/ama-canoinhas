@@ -239,6 +239,10 @@ def excluir_produto(request, pk):
     if request.is_ajax():
         if request.POST:
             produto = get_object_or_404(models.Produto, pk=pk)
+            produto_foto = models.ProdutoFoto.objects.filter(produto=produto)
+            for foto in produto_foto:
+                os.remove(foto.foto.path)
+                foto.delete()
             produto.delete()
 
             return JsonResponse('success', safe=False)
