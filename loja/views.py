@@ -1,4 +1,5 @@
 import os
+from pyexpat import model
 from . import forms
 from . import models
 from . import filters
@@ -13,20 +14,23 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-class LojaGeral(View):
+class LojaGeral(ListView):
+    model = models.Produto
     template_name = 'loja/loja_geral.html'
+    paginate_by = 15
+    filterset_class = filters.ProdutoFilterSet
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        
+        return self.filterset.qs.distinct()
 
-    def setup(self, *args, **kwargs):
-        super().setup(*args, **kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['filterset'] = self.filterset
 
-        contexto = {
-            'produtos': models.Produto.objects.all()
-        }
-
-        self.renderizar = render(self.request, self.template_name, contexto)
-
-    def get(self, *args, **kwargs):
-        return self.renderizar
+        return context
 
 
 class LojaItem(View):

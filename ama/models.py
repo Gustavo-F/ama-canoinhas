@@ -41,7 +41,7 @@ class Parceiro(models.Model):
 class Mensagem(models.Model):
     nome = models.CharField(max_length=150)
     email = models.EmailField(max_length=200)
-    telefone = models.CharField(max_length=20)
+    telefone = models.CharField(max_length=20, blank=True, null=True)
     assunto = models.CharField(max_length=150)
     mensagem = models.TextField()
     data = models.DateField(default=timezone.now)

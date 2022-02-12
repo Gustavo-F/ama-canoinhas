@@ -8,44 +8,68 @@
         <div class="col-lg-12">
             <div class="card shadow-lg">
                 <div class="card-content">
-                    <div class="card-header col-lg-12 text-center section-title">
-                        <h2>Loja</h2>
-                        <div class="divider mx-auto my-4"></div>
+                    <div class="card-header">
+                        <div class="col-lg-12 text-center section-title">
+                            <h2>Loja</h2>
+                            <div class="divider mx-auto my-4"></div>
+                        </div>
                     </div>
-                    <div class="row justify-content-center">
-                        {% for produto in produtos %}
-                            <div class="col-md-4 mb-4 mt-4">
-                                <a href="{% url 'loja:loja_item' produto.pk %}">
-                                    <div class="product-card card shadow-lg">
-                                        <div class="card-header d-flex">
-                                            {% if produto.preco_promocional %}
-                                                <div class="discount-tag-card rounded"><span class="discount-tag-value">{{ produto.get_discount_percentage }}%</span><span>Off</span>
-                                                </div>
-                                            {% endif %}
-                                            <div class="remaining-tag-card border border-primary rounded ml-1">
-                                                <span>Restam</span><span class="remaining-tag-value">{{ produto.quantidade }}</span><span>Unid.</span>
-                                            </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form action="" method="get">
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-2">
+                                            {{ filterset.form.categoria }}
                                         </div>
-                                        <div class="card-body rounded">
-                                            <div class="product-image">
-                                                <img src="{{ produto.fotos.first }}">
-                                            </div>
-                                            <div class="product-title">
-                                                <h3 class="card-title mt-3"> {{ produto.nome }}</h3>
-                                            </div>
-                                            <div class="product-prices">
-                                                {% if produto.preco_promocional %}
-                                                    <p class="product-previous-value">R$ {{ produto.preco }}</p>
-                                                    <p class="product-current-value">R$ {{ produto.preco_promocional }}</p>
-                                                {% else %}
-                                                    <p class="product-current-value">R$ {{ produto.preco }}</p>
-                                                {% endif %}
-                                            </div>
+                                        <div class="form-group col-lg-2">
+                                            {{ filterset.form.preco }}
+                                        </div>
+                                        <div class="form-group col-lg-7">
+                                            {{ filterset.form.busca }}
+                                        </div>
+                                        <div class="form-group col-lg-1">
+                                            <input class="btn-sm btn-primary  h-100 w-100" type="submit" value="Buscar">
                                         </div>
                                     </div>
-                                </a>
+                                </form>
                             </div>
-                        {% endfor %}
+                        </div>
+                        <div class="row justify-content-center">
+                            {% for produto in page_obj %}
+                                <div class="col-md-4 mb-4 mt-4">
+                                    <a href="{% url 'loja:loja_item' produto.pk %}">
+                                        <div class="product-card card shadow-lg">
+                                            <div class="card-header d-flex">
+                                                {% if produto.preco_promocional %}
+                                                    <div class="discount-tag-card rounded"><span class="discount-tag-value">{{ produto.get_discount_percentage }}%</span><span>Off</span>
+                                                    </div>
+                                                {% endif %}
+                                                <div class="remaining-tag-card border border-primary rounded ml-1">
+                                                    <span>Restam</span><span class="remaining-tag-value">{{ produto.quantidade }}</span><span>Unid.</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body rounded">
+                                                <div class="product-image">
+                                                    <img src="{{ produto.fotos.first }}">
+                                                </div>
+                                                <div class="product-title">
+                                                    <h3 class="card-title mt-3"> {{ produto.nome }}</h3>
+                                                </div>
+                                                <div class="product-prices">
+                                                    {% if produto.preco_promocional %}
+                                                        <p class="product-previous-value">R$ {{ produto.preco }}</p>
+                                                        <p class="product-current-value">R$ {{ produto.preco_promocional }}</p>
+                                                    {% else %}
+                                                        <p class="product-current-value">R$ {{ produto.preco }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
