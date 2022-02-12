@@ -262,9 +262,11 @@ class DashboardProdutos(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        
         return self.filterset.qs.distinct()
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['filterset'] = self.filterset
+        
         return context
