@@ -43,5 +43,5 @@ class Produto(models.Model):
 
     def get_discount_percentage(self):
         result = 100 - (self.preco_promocional * 100 / self.preco)
-        return round(result, 1)
+        return round(result, 0)
     
