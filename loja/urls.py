@@ -14,6 +14,7 @@ urlpatterns = [
     path('editar_produto/<int:pk>', views.EditarProduto.as_view(), name='editar_produto'),
     path('excluir_produto/<int:pk>', views.excluir_produto, name='excluir_produto'),
     path('dashboard/produtos/', view=views.DashboardProdutos.as_view(), name='dashboard_produtos'),
+    path('excluir_foto_produto/<int:pk>', views.excluir_foto_produto, name='excluir_foto_produto'),
 
     # Categoria
     path('add_categoria/', views.AdicionarCategoria.as_view(), name='add_categoria'),

@@ -113,7 +113,7 @@ class EditarCategoria(LoginRequiredMixin, View):
 
         messages.success(
             self.request,
-            'Categoria criada com sucesso!', 
+            'Categoria editada com sucesso!', 
         )
 
         return redirect('loja:dashboard_categorias')
@@ -200,6 +200,7 @@ class EditarProduto(LoginRequiredMixin, View):
         super().setup(*args, **kwargs)
 
         self.produto = get_object_or_404(models.Produto, pk=self.kwargs.get('pk'))
+        self.produto_foto = models.ProdutoFoto.objects.filter(produto=self.produto)
         contexto = {
             'titulo': 'Editar Produto',
             'produto_form': forms.ProdutoForm(
@@ -207,6 +208,7 @@ class EditarProduto(LoginRequiredMixin, View):
                 self.request.FILES or None,
                 instance=self.produto,
             ),
+            'produto_foto': self.produto_foto,
         }
 
         self.produto_form = contexto['produto_form']
@@ -233,7 +235,7 @@ class EditarProduto(LoginRequiredMixin, View):
         produto.save()
         messages.success(
             self.request,
-            'Produto adicionado com sucesso!', 
+            'Produto editado com sucesso!', 
         )
         return redirect('loja:dashboard_produtos')
 
@@ -270,3 +272,14 @@ class DashboardProdutos(LoginRequiredMixin, ListView):
         context['filterset'] = self.filterset
         
         return context
+
+
+@login_required
+def excluir_foto_produto(request, pk):
+    if request.is_ajax():
+        if request.POST:
+            foto = get_object_or_404(models.ProdutoFoto, pk=pk)
+            os.remove(foto.foto.path)
+            foto.delete()
+
+            return JsonResponse('success', safe=False)
