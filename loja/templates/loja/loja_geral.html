@@ -35,11 +35,11 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-left">
                             {% for produto in page_obj %}
                                 <div class="col-md-4 mb-4 mt-4">
                                     <a href="{% url 'loja:loja_item' produto.pk %}">
-                                        <div class="product-card card shadow-lg">
+                                        <div class="product-card card shadow-lg h-100">
                                             <div class="card-header d-flex">
                                                 {% if produto.preco_promocional %}
                                                     <div class="discount-tag-card rounded"><span class="discount-tag-value">{{ produto.get_discount_percentage }}%</span><span>Off</span>
@@ -50,8 +50,8 @@
                                                 </div>
                                             </div>
                                             <div class="card-body rounded">
-                                                <div class="product-image">
-                                                    <img src="{{ produto.fotos.first }}">
+                                                <div style="height:286px; width: 286px;">
+                                                    <img src="{{ produto.fotos.first }}" class="img-fluid mx-auto d-block h-100 w-auto img-thumbnail">
                                                 </div>
                                                 <div class="product-title">
                                                     <h3 class="card-title mt-3"> {{ produto.nome }}</h3>
@@ -61,7 +61,7 @@
                                                         <p class="product-previous-value">R$ {{ produto.preco }}</p>
                                                         <p class="product-current-value">R$ {{ produto.preco_promocional }}</p>
                                                     {% else %}
-                                                        <p class="product-current-value">R$ {{ produto.preco }}</p>
+                                                        <p class="product-current-value mt-5 pt-3">R$ {{ produto.preco }}</p>
                                                     {% endif %}
                                                 </div>
                                             </div>

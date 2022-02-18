@@ -31,8 +31,8 @@
         {% for parceiro in page_obj %}
             <div id="parceiro_{{ parceiro.pk }}" class="col-lg-4 mb-3">
                 <div class="card shadow-lg">
-                    <div class="card-header">
-                        <img class="parceiro-body" src="{{ parceiro.logo.url }}" alt="Logomarca {{ parceiro }}">
+                    <div class="card-header" style="height:300px">
+                        <img class="img-fluid h-100 w-auto mx-auto d-block" src="{{ parceiro.logo.url }}" alt="Logomarca {{ parceiro }}">
                     </div>
                     <div class="card-body">
                         <h5>{{ parceiro }}</h5>
