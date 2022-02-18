@@ -57,7 +57,7 @@ class EscreverNoticia(LoginRequiredMixin, View):
 
         noticia = self.noticia_form.save()
 
-        messages.success = (self.request, 'Notícia salva com sucesso!')
+        messages.success(self.request, 'Notícia salva com sucesso!')
 
         return redirect('ama:detalhes_noticia', slug=noticia.slug)
 
@@ -421,7 +421,7 @@ class EscreverProjeto(LoginRequiredMixin, View):
 
         projeto = self.projeto_form.save()
 
-        messages.success = (self.request, 'Projeto salvo com sucesso!')
+        messages.success(self.request, 'Projeto salvo com sucesso!')
 
         return redirect('ama:detalhes_projeto', slug=projeto.slug)
 
@@ -540,7 +540,7 @@ class EscreverEvento(LoginRequiredMixin, View):
 
         evento = self.evento_form.save()
 
-        messages.success = (self.request, 'Evento salvo com sucesso!')
+        messages.success(self.request, 'Evento salvo com sucesso!')
 
         return redirect('ama:detalhes_evento', slug=evento.slug)
 
@@ -659,7 +659,7 @@ class EscreverIndicacao(LoginRequiredMixin, View):
 
         indicacao = self.indicacao_form.save()
 
-        messages.success = (self.request, 'Indicação salva com sucesso!')
+        messages.success(self.request, 'Indicação salva com sucesso!')
 
         return redirect('ama:detalhes_indicacao', slug=indicacao.slug)
 
